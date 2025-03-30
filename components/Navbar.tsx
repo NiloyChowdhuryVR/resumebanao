@@ -1,14 +1,11 @@
 "use client";
 
 import { useState } from "react";
+// import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, X, Lightbulb, Code, BookOpen } from "lucide-react";
 import classNames from "classnames";
 
@@ -18,12 +15,14 @@ const Navbar = () => {
   const router = useRouter();
 
   const navItems = [
-    { title: "Learning Paths", href: "/learning-paths", icon: <Lightbulb className="mr-2 h-4 w-4" /> },
-    { title: "Code Playground", href: "/playground", icon: <Code className="mr-2 h-4 w-4" /> },
-    { title: "Resources", href: "/resources", icon: <BookOpen className="mr-2 h-4 w-4" /> },
+    { title: "Home", href: "/", icon: <Lightbulb size={18} className="mr-2" /> },
+    { title: "Resume Builder", href: "/resume", icon: <Code size={18} className="mr-2" /> },
+    { title: "About", href: "/about", icon: <BookOpen size={18} className="mr-2" /> },
   ];
 
   return (
+    // <SessionProvider>
+      
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur flex justify-center supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between w-[85%]">
         
@@ -53,7 +52,7 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-5">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} passHref>
+            <Link key={item.href} href={item.href}>
               <div
                 className={classNames(
                   "text-sm font-medium transition-colors flex items-center",
@@ -62,7 +61,7 @@ const Navbar = () => {
                     "hover:text-blue-600": pathname !== item.href,  // Blue color on hover
                   }
                 )}
-              >
+                >
                 {item.icon}
                 {item.title}
               </div>
@@ -72,8 +71,10 @@ const Navbar = () => {
 
         {/* Auth & Mobile Menu */}
         <div className="flex items-center gap-2">
-          <Button variant="ghost" className="hidden lg:block mr-2" onClick={() => router.push("/login")}>
-            Log in
+          <Button variant="ghost" className="hidden lg:block mr-2" 
+          onClick={() => router.push("/login")}
+          >
+            Login
           </Button>
           <Button variant="default" className="hidden lg:block cursor-pointer bg-blue-600 hover:bg-blue-700" onClick={() => router.push("/signup")}>
             Sign up
@@ -83,7 +84,7 @@ const Navbar = () => {
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="lg:hidden">
-                <Menu className="h-5 w-5" />
+                <Menu size={20} />
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
@@ -103,7 +104,7 @@ const Navbar = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="h-6 w-6 text-eduforge-600"
-                  >
+                    >
                     <path d="M12 22v-5.5" />
                     <path d="m9 8 3-4 3 4" />
                     <path d="M9.27 12a2 2 0 0 0-1.5 3.3l4.5 4.5a2 2 0 0 0 2.83 0l4.5-4.5a2 2 0 0 0-1.5-3.3H9.27Z" />
@@ -113,8 +114,8 @@ const Navbar = () => {
                 <button
                   onClick={() => setIsOpen(false)}
                   className="rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                >
-                  <X className="h-5 w-5" />
+                  >
+                  <X size={20} />
                 </button>
               </div>
 
@@ -131,8 +132,10 @@ const Navbar = () => {
               </nav>
 
               <div className="mt-8 space-y-2">
-                <Button variant="outline" className="w-full" onClick={() => router.push("/login")}>
-                  Log in
+                <Button variant="outline" className="w-full" 
+                onClick={() => router.push("/login")}
+                >
+                  Login
                 </Button>
                 <Button className="w-full bg-eduforge-600 hover:bg-eduforge-700" onClick={() => router.push("/signup")}>
                   Sign up
@@ -143,6 +146,7 @@ const Navbar = () => {
         </div>
       </div>
     </header>
+                  // </SessionProvider>
   );
 };
 

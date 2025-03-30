@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import TypewriterEffect from "./TypewriterEffect";
+import RepoList from "./RepoList";
 
 const HeroSection = () => {
   return (
@@ -15,21 +16,20 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Section */}
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 leading-tight">
+              <span className="text-transparent text-5xl lg:text-6xl bg-clip-text bg-gradient-t-r from-blue-500 to-purple-600">
               Sophora
               </span>
-              <br /> AI-Powered Personalized Learning Platform
+              <br /> Your Skills, Your Story – Perfectly Framed
             </h1>
 
             <p className="text-lg md:text-xl mb-8 text-gray-600 max-w-2xl mx-auto lg:mx-0">
-              Accelerate your learning journey with personalized roadmaps to resume, real-time collaboration,
-              and AI-powered feedback for rapid skill development.
+            Effortlessly build standout resumes with AI-powered templates, real-time collaboration, and automatic GitHub project integration — no extra setup needed!
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                <Link href="/signup">Start Learning Now</Link>
+                <Link href="/resume">Build Now</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link href="/about">Learn More</Link>
@@ -138,7 +138,6 @@ const HeroSection = () => {
 
             </div>
           </div>
-
         </div>
       </div>
     </div>
